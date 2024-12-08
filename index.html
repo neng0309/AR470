@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าเว็บไซต์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ส่วนบน -->
+        <div class="top-section">
+            <img src="images/logo.png" alt="Logo" class="logo-image">
+            <nav>
+                <ul>
+                    <li><a href="index.html">หน้าแรก</a></li>
+                    <li><a href="Portfolio.html">รู้จักเรา</a></li>
+                    <li><a href="gallery.html">ผลงานที่ผ่านมา</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- ส่วนกลาง -->
+        <div class="middle-section">
+            <img src="images/page-main.png" alt="Main Banner" class="main-banner">
+        </div>
+
+       <!-- ส่วนแกลเลอรี่ -->
+       <div class="image-gallery">
+           <div class="image-wrapper">
+               <!-- กรอบภาพจะถูกเพิ่มเข้าไปที่นี่ -->
+           </div>
+       </div>
+
+        <!-- ส่วนล่าง -->
+        <div class="bottom-bar">
+            <p>&copy; 2024 Your Company. All Rights Reserved.</p>
+        </div>
+
+        <!-- ปุ่มสำหรับ Contact Us และ Chat -->
+        <div class="contact-buttons">
+            <button class="chat-fb" onclick="openFacebookChat()">
+                <img src="images/messenger_icon.png" alt="Facebook Messenger" class="messenger-icon">
+            </button>
+            <button class="contact-us" onclick="showContactPopup()">Contact Us</button>
+        </div>
+
+        <!-- Popup Contact Us -->
+        <div id="contact-popup" class="contact-popup">
+            <div class="popup-content">
+                <h2>ติดต่อเรา</h2>
+                <img id="contact-qr-code" src="" alt="QR Code" class="qr-code">
+                <p id="contact-phone"></p>
+                <p id="contact-email"></p>
+            </div>
+        </div>
+
+
+        <!-- ป๊อปอัพแสดงภาพ -->
+        <div id="image-popup">
+            <img id="popup-image" src="" alt="Image Preview">
+        </div>
+
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

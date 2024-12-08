@@ -1,0 +1,420 @@
+/* ฟอนต์เริ่มต้น */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 90%;
+    font-family: 'Noto Sans Thai', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    background: linear-gradient(to right, #1c2833, #f4f6f7, #1c2833); /* สีน้ำเงินเข้มและเทาเข้ม */
+    padding: 1px 0;
+    z-index: -5;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+/* ส่วนบน */
+.top-section {
+    height: 70px;
+    background-color: #0a192f; /* สีพื้นหลัง */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* ลด padding ด้านบนและล่างลง */
+    box-sizing: border-box; /* รวม padding และ border ในขนาดที่กำหนด */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0; /* แนบกับด้านบน */
+    left: 0; /* แนบกับด้านซ้าย */
+    width: 100%; /* ให้แถบเต็มความกว้างหน้าจอ */
+    z-index: 1;
+}
+
+/* โลโก้ */
+.logo-image {
+    height: 45px;
+    border-radius: 10px;
+    padding: 1px;
+    background: #fff;
+    box-shadow: 0 0 5px 5px rgba(255, 215, 0, 0.2);
+    transition: box-shadow 1s ease-in-out;
+}
+
+.logo-image:hover {
+    box-shadow: 0 0 5px 5px rgba(255, 215, 0, 0.1);
+    transform: scale(1.1);
+}
+
+/* เมนูนำทาง */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* ส่วนที่เกี่ยวข้องกับ Gallery */
+.gallery-section {
+    margin-top: 30px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-section h2 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* กริดสำหรับแสดงผลงาน */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* กำหนดขนาดขั้นต่ำของแต่ละภาพในกริด */
+    gap: 20px; /* ระยะห่างระหว่างภาพ */
+    justify-items: center; /* จัดตำแหน่งภาพให้อยู่กลาง */
+}
+
+/* กรอบของแต่ละภาพ */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* กำหนดความสูงของแต่ละภาพให้เท่ากัน */
+}
+
+/* ขนาดของภาพในแต่ละกรอบ */
+.gallery-item img {
+    width: 100%; /* ให้ภาพเต็มความกว้างของกรอบ */
+    height: 100%; /* ให้ภาพเต็มความสูงของกรอบ */
+    object-fit: cover; /* ปรับให้ภาพไม่ยืดหรือบิดเบี้ยว */
+    transition: transform 0.3s ease;
+}
+
+/* เพิ่มเอฟเฟกต์เมื่อ hover */
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* แสดงข้อความ overlay เมื่อ hover */
+.gallery-item .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+/* ส่วนล่าง */
+.bottom-bar {
+    background-color: #f1f1f1;
+    padding: 1px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.bottom-bar p {
+    margin: 0;
+}
+
+/* ปุ่มสำหรับ Contact Us และ Chat */
+.contact-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    z-index: 9999;
+}
+
+.contact-us {
+    background-color: #fff;
+    color: #1877F2;
+    padding: 10px 10px;
+    font-size: 1rem;
+    border: 2px solid #1877F2;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+    text-align: center;
+}
+
+.contact-us:hover {
+    background-color: #1877F2;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.chat-fb {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #1877F2;
+    cursor: pointer;
+}
+
+.messenger-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.chat-fb:hover .messenger-icon {
+    transform: scale(1.35);
+}
+
+/* ป๊อปอัพติดต่อเรา */
+.contact-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-popup.show {
+    display: flex;
+
+}
+
+.popup-content {
+    background-color: white;
+    width: 100px;
+    padding: 25px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 100px;
+    width: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content h2 {
+    margin: 0 0 20px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.popup-content .qr-code {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+
+ 
+
+/* จัดสไตล์ให้กลุ่มปี */
+.gallery-year {
+    margin-bottom: 40px;
+}
+
+.gallery-year h3 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.gallery-year .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+/* ป๊อปอัพสำหรับแสดงรายละเอียดผลงาน */
+.gallery-popup {
+    display: none;
+    position: fixed;
+    top: 50%; /* วางตรงกลางจอในแนวตั้ง */
+    left: 50%; /* วางตรงกลางจอในแนวนอน */
+    transform: translate(-50%, -50%); /* เคลื่อนที่ไปยังกลางจอ */
+    width: 100%; /* ความกว้างไม่เกิน 70% ของหน้าจอ */
+    max-width: 100%; /* ไม่ให้เกิน 70% ของความกว้างหน้าจอ */
+    height: 100%; /* ความสูงอัตโนมัติ */
+    max-height: 90%; /* จำกัดความสูงไม่เกิน 70% ของความสูงหน้าจอ */
+    background-color: rgba(0, 0, 0, 0.8); /* สีพื้นหลังมืด */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* ให้อยู่ด้านบน */
+}
+
+/* เนื้อหาของป๊อปอัพ */
+.popup-content {
+    background-color: white;
+    padding: 5px;
+    border-radius: 25px;
+    text-align: center;
+    width: 70%; /* ความกว้างเต็มที่ของเนื้อหา */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    max-height: 100%; /* สูงสุดที่ 90% ของความสูงจอ */
+    max-width: 100%; /* ไม่ให้เกิน 70% ของความกว้างหน้าจอ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* กริดแสดงภาพในป๊อปอัพ */
+.popup-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-center, minmax(500px, 1fr)); /* กริดที่สามารถยืดหยุ่นได้ */
+    gap: 5px;
+    height: 100%; /* สูงสุดที่ 90% ของความสูงจอ */
+    width: 100%; /* ให้กริดเต็มความกว้างของป๊อปอัพ */
+    justify-items: center;
+    justify-content: center;
+}
+
+/* การจัดการขนาดของรูปภาพ */
+.popup-gallery-grid img {
+    max-width: 100%; /* ปรับขนาดรูปภาพให้อยู่ในขอบเขตของความกว้างที่กำหนด */
+    max-height: 50vh; /* จำกัดความสูงไม่เกิน 70% ของหน้าจอ */
+    height: auto; /* ความสูงปรับอัตโนมัติ */
+    display: block; /* ทำให้รูปภาพอยู่ในบล็อก */
+    margin: 0 auto; /* ให้อยู่ตรงกลาง */
+}
+
+/* ปุ่มการนำทางในป๊อปอัพ */
+.popup-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    position: fixed; /* ตำแหน่ง fixed เพื่อให้ปุ่มอยู่กับหน้าจอ */
+    top: 50%; /* กำหนดให้ปุ่มอยู่ที่ 70% ของความสูงหน้าจอ */
+    width: 100%; /* ใช้ความกว้างเต็มจอ */
+    transform: translateY(-50%); /* จัดให้อยู่กึ่งกลางในแนวตั้ง */
+    z-index: 1050; /* ให้อยู่ด้านบนสุด */
+    pointer-events: none; /* ป้องกันพื้นที่ container รบกวน */
+    max-height: 30%; /* จำกัดความสูงสูงสุดของปุ่มให้ไม่เกิน 30% ของความสูงหน้าจอ */
+}
+
+/* สไตล์ของปุ่ม */
+.popup-navigation button {
+    background-color: #0a192f;
+    color: white;
+    border: none;
+    padding: 12px 20px; /* ขนาดปุ่ม */
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    pointer-events: auto; /* อนุญาตให้คลิกปุ่มได้ */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    opacity: 0.8;
+}
+
+/* สไตล์เมื่อ hover ปุ่ม */
+.popup-navigation button:hover {
+    background-color: #1557A7;
+    opacity: 1; /* เพิ่มความชัดเจนเมื่อ hover */
+    transform: scale(1.1); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+}
+
+/* ปรับตำแหน่งปุ่มซ้ายและขวา */
+.prev-button {
+    position: fixed;
+    left: 20px; /* ระยะห่างจากขอบซ้าย */
+    top: 50%; /* วางตรงกลางจอในแนวตั้ง */
+    transform: translateY(-50%);
+    z-index: 1050; /* ให้อยู่ด้านบน */
+}
+
+.next-button {
+    position: fixed;
+    right: 60px; /* เลื่อนมาทางซ้ายจากขอบขวา */
+    top: 50%; /* วางตรงกลางจอในแนวตั้ง */
+    transform: translateY(-50%);
+    z-index: 1050; /* ให้อยู่ด้านบน */
+}
+
+
+/* สไตล์ปุ่มปิด (X) ที่มุมขวาบน */
+.close-popup {
+    position: absolute; /* ทำให้ตำแหน่งของปุ่มถูกควบคุม */
+    top: 10px; /* ระยะห่างจากขอบบน */
+    right: 10px; /* ระยะห่างจากขอบขวา */
+    background-color: #d32f2f; /* ปุ่มไม่มีพื้นหลัง */
+    border: 1; /* ไม่มีขอบ */
+    font-size: 12px; /* ขนาดฟอนต์ */
+    color: white; /* สีข้อความ */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
+    z-index: 1060; /* ให้อยู่ด้านบนสุด */
+}
+
+.close-popup:hover {
+    color: #f44336; /* เปลี่ยนสีเมื่อ hover */
+}
