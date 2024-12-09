@@ -151,20 +151,39 @@ const images = [
     'images_gallery/image1.png',
     'images_gallery/image2.png',
     'images_gallery/image3.png',
+    'images_gallery/image4.png',
+    'images_gallery/image5.png',
+    'images_gallery/image6.png',
+    'images_gallery/image7.png',
+    'images_gallery/image8.png',
+    'images_gallery/image9.png',
+    'images_gallery/image10.png',
+    'images_gallery/image11.png',
+    'images_gallery/image12.png',
     // เพิ่มภาพทั้งหมดที่นี่
 ];
 
 function openImagePopup(imageSrc) {
+    console.log('Image clicked:', imageSrc); // ตรวจสอบค่า src ของภาพที่คลิก
+
+    // ตัด path ส่วนที่ไม่จำเป็นออกเพื่อหาเฉพาะชื่อไฟล์
+    const src = imageSrc.split('/').pop(); // ดึงเฉพาะชื่อไฟล์ เช่น "image1.png"
+
+    // ค้นหา index ของภาพในอาร์เรย์ images
+    currentImageIndex = images.findIndex(image => image.endsWith(src));
+    console.log('Index found:', currentImageIndex); // ตรวจสอบ index ที่ค้นพบ
+
+    if (currentImageIndex === -1) {
+        console.error('Image not found in the array!');
+        return; // หากไม่พบภาพในอาร์เรย์ ให้หยุดทำงาน
+    }
+
     const popup = document.getElementById('image-popup');
     const popupImage = document.getElementById('popup-image');
-
-    // ค้นหา index ของภาพที่ถูกคลิก
-    currentImageIndex = images.findIndex(image => image === imageSrc);
-    if (currentImageIndex === -1) currentImageIndex = 0;
-
-    popupImage.src = images[currentImageIndex];
-    popup.classList.add('show');
+    popupImage.src = images[currentImageIndex]; // แสดงภาพในป๊อปอัพ
+    popup.classList.add('show'); // เปิดป๊อปอัพ
 }
+
 
 function showNextImage() {
     currentImageIndex = (currentImageIndex + 1) % images.length;
