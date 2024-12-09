@@ -82,13 +82,11 @@ function loadImages() {
 
 }
 
-// เรียกใช้ฟังก์ชัน loadImages เมื่อหน้าเว็บโหลดเสร็จ
+// เรียกใช้ฟังก์ชัน loadImages และเพิ่มอีเวนต์คลิกสำหรับรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
 window.onload = function() {
     loadImages();
     addClickEventToImages();  // เพิ่มอีเวนต์คลิกสำหรับรูปภาพ
 };
-
-
 
 // ฟังก์ชันสำหรับเปิดป๊อปอัพแสดงรูปใหญ่
 function openImagePopup(imageSrc) {
@@ -102,11 +100,11 @@ function openImagePopup(imageSrc) {
     popup.classList.add('show');
 }
 
-// ฟังก์ชันสำหรับปิดป๊อปอัพเมื่อคลิกที่พื้นที่ว่าง
-function closeImagePopup(event) {
+// ฟังก์ชันสำหรับปิดป๊อปอัพเมื่อคลิกที่พื้นที่ว่างหรือปุ่มปิด
+function closeGalleryPopup(event) {
     const popup = document.getElementById('image-popup');
     if (event.target === popup || event.target.id === 'close-popup') {
-        popup.classList.remove('show'); // ซ่อนป๊อปอัพ
+        popup.classList.remove('show');  // ซ่อนป๊อปอัพ
     }
 }
 
@@ -125,24 +123,19 @@ function addClickEventToImages() {
 function handleEscKey(event) {
     if (event.key === 'Escape') {
         const popup = document.getElementById('image-popup');
-        popup.classList.remove('show'); // ซ่อนป๊อปอัพ
+        popup.classList.remove('show');  // ซ่อนป๊อปอัพเมื่อกด ESC
     }
 }
 
-// เรียกฟังก์ชัน addClickEventToImages เมื่อหน้าเว็บโหลดเสร็จ
-window.onload = function() {
-    loadImages();
-    addClickEventToImages();  // เพิ่มอีเวนต์คลิกสำหรับรูปภาพ
-};
-
-// ฟังก์ชันสำหรับปิดป๊อปอัพเมื่อคลิกที่พื้นที่ว่างหรือปุ่มปิด
+// ฟังก์ชันฟังการคลิกพื้นที่นอกป๊อปอัพหรือปุ่มปิด
 window.onclick = function(event) {
-    closeImagePopup(event);  // ปิดป๊อปอัพเมื่อคลิกพื้นที่นอกป๊อปอัพ
-    closeContactPopup(event); // ปิดป๊อปอัพติดต่อเมื่อคลิกข้างนอก
+    closeGalleryPopup(event);  // ปิดป๊อปอัพเมื่อคลิกพื้นที่นอกป๊อปอัพหรือปุ่ม "X"
 };
 
 // ฟังก์ชันฟังการกดปุ่ม ESC
 window.addEventListener('keydown', handleEscKey);  // ฟังการกดปุ่ม ESC
+
+
 
 
 

@@ -43,7 +43,7 @@
             <button class="chat-fb" onclick="openFacebookChat()">
                 <img src="images/messenger_icon.png" alt="Facebook Messenger" class="messenger-icon">
             </button>
-            <button class="contact-us" onclick="showContactPopup()">Contact Us</button>
+            <button class="contact-us" onclick="showContactPopup()">ติดต่อเรา</button>
         </div>
 
         <!-- Popup Contact Us -->
@@ -57,16 +57,21 @@
         </div>
 
 
-        <!-- ป๊อปอัพแสดงภาพ -->
-        <div id="image-popup">
-        <div class="popup-controls">
-            <div class="popup-control" id="prev-button" onclick="showPreviousImage()">&#8249;</div>
-            <img id="popup-image" src="" alt="Image Preview">
-            <div class="popup-control" id="next-button" onclick="showNextImage()">&#8250;</div>
-        </div>
-
-
+<!-- ป๊อปอัพแสดงภาพ -->
+<div id="image-popup" class="popup">
+    <!-- ปุ่มปิดป๊อปอัพ -->
+    <button id="close-popup" class="close-popup" onclick="closeGalleryPopup(event)">X</button>
+    <div class="popup-controls">
+        <!-- ปุ่มแสดงรูปก่อนหน้า -->
+        <div class="popup-control" id="prev-button" onclick="showPreviousImage()">&#8249;</div>
+        
+        <!-- รูปภาพที่จะโชว์ในป๊อปอัพ -->
+        <img id="popup-image" src="" alt="Image Preview">
+        
+        <!-- ปุ่มแสดงรูปรูปถัดไป -->
+        <div class="popup-control" id="next-button" onclick="showNextImage()">&#8250;</div>
     </div>
+</div>
 
     <script src="script.js"></script>
 </body>
