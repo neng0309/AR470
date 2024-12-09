@@ -33,7 +33,7 @@ body, html {
     top: 0; /* แนบกับด้านบน */
     left: 0; /* แนบกับด้านซ้าย */
     width: 100%; /* ให้แถบเต็มความกว้างหน้าจอ */
-    z-index: 1;
+    z-index: 10000;
 }
 
 /* โลโก้ */
@@ -86,8 +86,8 @@ nav ul li a {
 /* กริดสำหรับแสดงผลงาน */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* กำหนดขนาดขั้นต่ำของแต่ละภาพในกริด */
-    gap: 20px; /* ระยะห่างระหว่างภาพ */
+    grid-template-columns: repeat(auto-fill, minmax(2500px, 1fr)); /* กำหนดขนาดขั้นต่ำของแต่ละภาพในกริด */
+    gap: 10px; /* ระยะห่างระหว่างภาพ */
     justify-items: center; /* จัดตำแหน่งภาพให้อยู่กลาง */
 }
 
@@ -110,6 +110,7 @@ nav ul li a {
     height: 100%; /* ให้ภาพเต็มความสูงของกรอบ */
     object-fit: cover; /* ปรับให้ภาพไม่ยืดหรือบิดเบี้ยว */
     transition: transform 0.3s ease;
+    border-radius: 8px;
 }
 
 /* เพิ่มเอฟเฟกต์เมื่อ hover */
@@ -187,7 +188,7 @@ nav ul li a {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 150px;
+    width: 85px;
     text-align: center;
 }
 
@@ -226,12 +227,13 @@ nav ul li a {
     display: none;
     position: fixed;
     top: 0;
-    left: 0%;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 
 .contact-popup.show {
@@ -314,12 +316,12 @@ nav ul li a {
 
 /* เนื้อหาของป๊อปอัพ */
 .popup-content {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.2);
     padding: 5px;
     border-radius: 25px;
     text-align: center;
-    width: 70%; /* ความกว้างเต็มที่ของเนื้อหา */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 75%; /* ความกว้างเต็มที่ของเนื้อหา */
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
     overflow: auto;
     max-height: 100%; /* สูงสุดที่ 90% ของความสูงจอ */
     max-width: 100%; /* ไม่ให้เกิน 70% ของความกว้างหน้าจอ */
@@ -347,6 +349,7 @@ nav ul li a {
     height: auto; /* ความสูงปรับอัตโนมัติ */
     display: block; /* ทำให้รูปภาพอยู่ในบล็อก */
     margin: 0 auto; /* ให้อยู่ตรงกลาง */
+    border-radius: 10px;
 }
 
 /* ปุ่มการนำทางในป๊อปอัพ */
@@ -360,16 +363,16 @@ nav ul li a {
     transform: translateY(-50%); /* จัดให้อยู่กึ่งกลางในแนวตั้ง */
     z-index: 1050; /* ให้อยู่ด้านบนสุด */
     pointer-events: none; /* ป้องกันพื้นที่ container รบกวน */
-    max-height: 30%; /* จำกัดความสูงสูงสุดของปุ่มให้ไม่เกิน 30% ของความสูงหน้าจอ */
+    height: 100%;
 }
 
 /* สไตล์ของปุ่ม */
 .popup-navigation button {
-    background-color: #0a192f;
+    background-color: rgba(0, 0, 0, 0.3);
     color: white;
     border: none;
-    padding: 12px 20px; /* ขนาดปุ่ม */
-    font-size: 16px;
+    padding: 5px 15px; /* ขนาดปุ่ม */
+    font-size: 20px;
     border-radius: 8px;
     cursor: pointer;
     pointer-events: auto; /* อนุญาตให้คลิกปุ่มได้ */
@@ -379,7 +382,7 @@ nav ul li a {
 
 /* สไตล์เมื่อ hover ปุ่ม */
 .popup-navigation button:hover {
-    background-color: #1557A7;
+    background-color: rgba(0, 0, 0, 0.6);
     opacity: 1; /* เพิ่มความชัดเจนเมื่อ hover */
     transform: scale(1.1); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
 }
@@ -405,11 +408,11 @@ nav ul li a {
 /* สไตล์ปุ่มปิด (X) ที่มุมขวาบน */
 .close-popup {
     position: absolute; /* ทำให้ตำแหน่งของปุ่มถูกควบคุม */
-    top: 10px; /* ระยะห่างจากขอบบน */
+    top: 60px; /* ระยะห่างจากขอบบน */
     right: 10px; /* ระยะห่างจากขอบขวา */
-    background-color: #d32f2f; /* ปุ่มไม่มีพื้นหลัง */
-    border: 1; /* ไม่มีขอบ */
-    font-size: 12px; /* ขนาดฟอนต์ */
+    background-color: transparent; /* ปุ่มไม่มีพื้นหลัง */
+    border: 0; /* ไม่มีขอบ */
+    font-size: 20px; /* ขนาดฟอนต์ */
     color: white; /* สีข้อความ */
     cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อ hover */
     z-index: 1060; /* ให้อยู่ด้านบนสุด */

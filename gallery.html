@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="gallery-styles.css"> <!-- รวมไฟล์ CSS -->
 </head>
 <body>
-    <div class="container">
+    	<div class="container">
         <!-- ส่วนบน -->
-        <div class="top-section">
-            <img src="images/logo.png" alt="Logo" class="logo-image">
-            <nav>
-                <ul>
-                    <li><a href="index.html">หน้าแรก</a></li>
-                    <li><a href="Portfolio.html">รู้จักเรา</a></li>
-                    <li><a href="gallery.html">ผลงานที่ผ่านมา</a></li>
-                </ul>
-            </nav>
-        </div>
+	<div class="top-section">
+	    <a href="index.html">
+	    <img src="images/logo.png" alt="Logo" class="logo-image">
+	    </a>
+	    <nav>
+	        <ul>
+	            <li><a href="Portfolio.html">รู้จักเรา</a></li>
+	            <li><a href="gallery.html">ผลงานที่ผ่านมา</a></li>
+	        </ul>
+	    </nav>
+	</div>
 
         <!-- ส่วนแสดง Gallery -->
         <div class="gallery-section">
@@ -31,23 +32,26 @@
                 <div class="gallery-grid">
                     <!-- ตัวอย่างการแสดงผลงานปี 2024 เป็นชุด ๆ -->
                     <div class="gallery-item" onclick="showGalleryDetails('2024-1')">
-                        <img src="Port-gallery/2024/1/thumb.jpg" alt="ผลงาน 2024-1" class="gallery-image">
+                        <img src="images_gallery/image3.png" alt="ผลงาน 2024-1" class="gallery-image">
                         <div class="overlay">
                             <p>ชุดที่ 2024-1</p>
                         </div>
                     </div>
+
                     <div class="gallery-item" onclick="showGalleryDetails('2024-2')">
-                        <img src="Port-gallery/2024/2/thumb.jpg" alt="ผลงาน 2024-2" class="gallery-image">
+                        <img src="images_gallery/image2.png" alt="ผลงาน 2024-2" class="gallery-image">
                         <div class="overlay">
                             <p>ชุดที่ 2024-2</p>
                         </div>
                     </div>
+
                     <div class="gallery-item" onclick="showGalleryDetails('2024-3')">
-                        <img src="Port-gallery/2024/3/thumb.jpg" alt="ผลงาน 2024-3" class="gallery-image">
+                        <img src="images_gallery/image5.png" alt="ผลงาน 2024-3" class="gallery-image">
                         <div class="overlay">
                             <p>ชุดที่ 2024-3</p>
                         </div>
                     </div>
+
                     <!-- เพิ่มชุดอื่น ๆ ของปี 2024 -->
                 </div>
             </section>
@@ -63,7 +67,7 @@
             <button class="chat-fb" onclick="openFacebookChat()">
                 <img src="images/messenger_icon.png" alt="Facebook Messenger" class="messenger-icon">
             </button>
-            <button class="contact-us" onclick="showContactPopup()">Contact Us</button>
+            <button class="contact-us" onclick="showContactPopup()">ติดต่อเรา</button>
         </div>
 
         <!-- Popup Contact Us -->

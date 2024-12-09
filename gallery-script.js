@@ -95,11 +95,11 @@ function showGalleryDetails(workId) {
     navButtons.classList.add('popup-navigation');
     
     const prevButton = document.createElement('button');
-    prevButton.textContent = 'ย้อนกลับ';
+    prevButton.textContent = '<';
     prevButton.onclick = () => changeImage('prev', images, popupContent);
 
     const nextButton = document.createElement('button');
-    nextButton.textContent = 'ถัดไป';
+    nextButton.textContent = '>';
     nextButton.onclick = () => changeImage('next', images, popupContent);
 
     navButtons.appendChild(prevButton);
@@ -130,11 +130,11 @@ function changeImage(direction, images, popupContent) {
     navButtons.classList.add('popup-navigation');
     
     const prevButton = document.createElement('button');
-    prevButton.textContent = 'ย้อนกลับ';
+    prevButton.textContent = '<';
     prevButton.onclick = () => changeImage('prev', images, popupContent);
 
     const nextButton = document.createElement('button');
-    nextButton.textContent = 'ถัดไป';
+    nextButton.textContent = '>';
     nextButton.onclick = () => changeImage('next', images, popupContent);
 
     navButtons.appendChild(prevButton);
