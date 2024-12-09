@@ -143,3 +143,73 @@ window.onclick = function(event) {
 
 // ฟังก์ชันฟังการกดปุ่ม ESC
 window.addEventListener('keydown', handleEscKey);  // ฟังการกดปุ่ม ESC
+
+
+
+let currentImageIndex = 0; // เก็บตำแหน่งของภาพปัจจุบัน
+const images = [
+    'images_gallery/image1.png',
+    'images_gallery/image2.png',
+    'images_gallery/image3.png',
+    // เพิ่มภาพทั้งหมดในแกลเลอรีที่นี่
+];
+
+function openImagePopup(imageSrc) {
+    const popup = document.getElementById('image-popup');
+    const popupImage = document.getElementById('popup-image');
+    
+    // ค้นหา index ของภาพที่ถูกคลิก
+    currentImageIndex = images.findIndex(image => image === imageSrc);
+    if (currentImageIndex === -1) currentImageIndex = 0;
+
+    popupImage.src = images[currentImageIndex];
+    popup.classList.add('show');
+}
+
+function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    const popupImage = document.getElementById('popup-image');
+    popupImage.src = images[currentImageIndex];
+}
+
+function showPreviousImage() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    const popupImage = document.getElementById('popup-image');
+    popupImage.src = images[currentImageIndex];
+}
+
+function closeImagePopup(event) {
+    const popup = document.getElementById('image-popup');
+    if (event.target === popup || event.target.id === 'close-popup') {
+        popup.classList.remove('show');
+    }
+}
+
+function addClickEventToImages() {
+    const imageFrames = document.querySelectorAll('.image-frame img');
+    
+    imageFrames.forEach(img => {
+        img.addEventListener('click', function() {
+            openImagePopup(this.src);
+        });
+    });
+}
+
+window.onload = function() {
+    loadImages();
+    addClickEventToImages();
+};
+
+window.onclick = function(event) {
+    closeImagePopup(event);
+};
+
+window.addEventListener('keydown', function(event) {
+    const popup = document.getElementById('image-popup');
+    if (popup.classList.contains('show')) {
+        if (event.key === 'ArrowRight') showNextImage();
+        else if (event.key === 'ArrowLeft') showPreviousImage();
+        else if (event.key === 'Escape') popup.classList.remove('show');
+    }
+});
+
