@@ -146,18 +146,18 @@ window.addEventListener('keydown', handleEscKey);  // ฟังการกด�
 
 
 
-let currentImageIndex = 0; // เก็บตำแหน่งของภาพปัจจุบัน
+let currentImageIndex = 0;
 const images = [
     'images_gallery/image1.png',
     'images_gallery/image2.png',
     'images_gallery/image3.png',
-    // เพิ่มภาพทั้งหมดในแกลเลอรีที่นี่
+    // เพิ่มภาพทั้งหมดที่นี่
 ];
 
 function openImagePopup(imageSrc) {
     const popup = document.getElementById('image-popup');
     const popupImage = document.getElementById('popup-image');
-    
+
     // ค้นหา index ของภาพที่ถูกคลิก
     currentImageIndex = images.findIndex(image => image === imageSrc);
     if (currentImageIndex === -1) currentImageIndex = 0;
@@ -168,43 +168,40 @@ function openImagePopup(imageSrc) {
 
 function showNextImage() {
     currentImageIndex = (currentImageIndex + 1) % images.length;
-    const popupImage = document.getElementById('popup-image');
-    popupImage.src = images[currentImageIndex];
+    document.getElementById('popup-image').src = images[currentImageIndex];
 }
 
 function showPreviousImage() {
     currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-    const popupImage = document.getElementById('popup-image');
-    popupImage.src = images[currentImageIndex];
+    document.getElementById('popup-image').src = images[currentImageIndex];
 }
 
 function closeImagePopup(event) {
     const popup = document.getElementById('image-popup');
-    if (event.target === popup || event.target.id === 'close-popup') {
+    if (event.target === popup) {
         popup.classList.remove('show');
     }
 }
 
 function addClickEventToImages() {
     const imageFrames = document.querySelectorAll('.image-frame img');
-    
     imageFrames.forEach(img => {
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function () {
             openImagePopup(this.src);
         });
     });
 }
 
-window.onload = function() {
+window.onload = function () {
     loadImages();
     addClickEventToImages();
 };
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     closeImagePopup(event);
 };
 
-window.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', function (event) {
     const popup = document.getElementById('image-popup');
     if (popup.classList.contains('show')) {
         if (event.key === 'ArrowRight') showNextImage();
@@ -212,4 +209,3 @@ window.addEventListener('keydown', function(event) {
         else if (event.key === 'Escape') popup.classList.remove('show');
     }
 });
-
