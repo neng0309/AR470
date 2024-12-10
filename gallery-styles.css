@@ -276,8 +276,10 @@ nav ul li a {
     margin-bottom: 10px;
 }
 
-
- 
+.popup-content {
+    background-color: white !important; /* บังคับให้พื้นหลังเป็นสีขาว */
+}
+ ;
 
 /* จัดสไตล์ให้กลุ่มปี */
 .gallery-year {
@@ -296,12 +298,12 @@ nav ul li a {
 
 .gallery-year .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr); /* แถวละ 3 รูป */
+    gab: 10px
     justify-items: center;
 }
 
-/* ป๊อปอัพสำหรับแสดงรายละเอียดผลงาน */
+/* ป๊อปอัพสำหรับแสดงรายละเอียดผลงาน  รูปใหญ่ */
 .gallery-popup {
     display: none;
     position: fixed;
@@ -318,7 +320,7 @@ nav ul li a {
     z-index: 1000; /* ให้อยู่ด้านบน */
 }
 
-/* เนื้อหาของป๊อปอัพ */
+/* เนื้อหาของป๊อปอัพ รูปใหญ่ */
 .popup-content {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 5px;
@@ -340,7 +342,7 @@ nav ul li a {
     display: grid;
     grid-template-columns: repeat(auto-center, minmax(500px, 1fr)); /* กริดที่สามารถยืดหยุ่นได้ */
     gap: 5px;
-    height: 100%; /* สูงสุดที่ 90% ของความสูงจอ */
+    height: 90%; /* สูงสุดที่ 90% ของความสูงจอ */
     width: 100%; /* ให้กริดเต็มความกว้างของป๊อปอัพ */
     justify-items: center;
     justify-content: center;
@@ -349,7 +351,7 @@ nav ul li a {
 /* การจัดการขนาดของรูปภาพ */
 .popup-gallery-grid img {
     max-width: 100%; /* ปรับขนาดรูปภาพให้อยู่ในขอบเขตของความกว้างที่กำหนด */
-    max-height: 50vh; /* จำกัดความสูงไม่เกิน 70% ของหน้าจอ */
+    max-height: 70vh; /* จำกัดความสูงไม่เกิน 70% ของหน้าจอ */
     height: auto; /* ความสูงปรับอัตโนมัติ */
     display: block; /* ทำให้รูปภาพอยู่ในบล็อก */
     margin: 0 auto; /* ให้อยู่ตรงกลาง */
