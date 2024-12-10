@@ -29,14 +29,18 @@ function openFacebookChat() {
     window.open("https://m.me/yourfacebookpage", "_blank");  // เปิดหน้าต่างแชท Facebook
 }
 
+
+
+
+
+
+
+
 // ฟังก์ชันเพื่อโหลดและแสดงรูปภาพจากโฟลเดอร์ images_gallery
 function loadImages() {
     const imageWrapper = document.querySelector('.image-wrapper');
     
-    // โฟลเดอร์ที่เก็บรูปภาพ
     const folderPath = 'images_gallery/';
-    
-    // ตัวอย่างชื่อไฟล์รูปภาพ (เพิ่มรูปภาพในโฟลเดอร์ images_gallery)
     const images = [
         'image1.png',
         'image2.png',
@@ -52,40 +56,35 @@ function loadImages() {
         'image12.png'
     ];
     
-    // สร้างกรอบ 5 กรอบสำหรับแสดงรูปภาพ
     let currentIndex = 0;
     const imageFrames = [];
     
     for (let i = 0; i < 5; i++) {
         const imgDiv = document.createElement('div');
-        imgDiv.classList.add('image-frame'); // คลาสสำหรับกรอบรูป
+        imgDiv.classList.add('image-frame');
 
         const img = document.createElement('img');
-        img.src = folderPath + images[(currentIndex + i) % images.length]; // ตั้งค่าที่อยู่ของรูปภาพ
-        img.alt = images[(currentIndex + i) % images.length]; // ตั้งค่า alt text ให้ตรงกับชื่อไฟล์
+        img.src = folderPath + images[(currentIndex + i) % images.length];
+        img.alt = images[(currentIndex + i) % images.length];
 
-        imgDiv.appendChild(img); // เพิ่มรูปภาพเข้าไปในกรอบ
-        imageFrames.push(imgDiv); // เก็บกรอบรูปไว้
-        imageWrapper.appendChild(imgDiv); // เพิ่มกรอบลงใน container ของแกลเลอรี่
+        imgDiv.appendChild(img);
+        imageFrames.push(imgDiv);
+        imageWrapper.appendChild(imgDiv);
     }
 
-    // ฟังก์ชันสำหรับเปลี่ยนรูปทุกๆ 3 วินาที
     setInterval(() => {
-        // อัพเดทภาพในกรอบ 5 กรอบ
         currentIndex = (currentIndex + 1) % images.length;
         imageFrames.forEach((frame, index) => {
             const img = frame.querySelector('img');
             img.src = folderPath + images[(currentIndex + index) % images.length];
             img.alt = images[(currentIndex + index) % images.length];
         });
-    }, 3000); // เปลี่ยนทุกๆ 3 วินาที
-
+    }, 3000);
 }
 
-// เรียกใช้ฟังก์ชัน loadImages และเพิ่มอีเวนต์คลิกสำหรับรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
 window.onload = function() {
     loadImages();
-    addClickEventToImages();  // เพิ่มอีเวนต์คลิกสำหรับรูปภาพ
+    addClickEventToImages();
 };
 
 // ฟังก์ชันสำหรับเปิดป๊อปอัพแสดงรูปใหญ่
@@ -93,18 +92,18 @@ function openImagePopup(imageSrc) {
     const popup = document.getElementById('image-popup');
     const popupImage = document.getElementById('popup-image');
     
-    // ตั้งค่าภาพที่จะแสดงในป๊อปอัพ
     popupImage.src = imageSrc;
-    
-    // แสดงป๊อปอัพ
     popup.classList.add('show');
 }
 
-// ฟังก์ชันสำหรับปิดป๊อปอัพเมื่อคลิกที่พื้นที่ว่างหรือปุ่มปิด
+// ฟังก์ชันปิดป๊อปอัพเมื่อคลิกที่พื้นที่ว่างหรือปุ่มปิด
 function closeGalleryPopup(event) {
     const popup = document.getElementById('image-popup');
-    if (event.target === popup || event.target.id === 'close-popup') {
-        popup.classList.remove('show');  // ซ่อนป๊อปอัพ
+    const closeButton = document.getElementById('close-popup');
+    
+    // ตรวจสอบว่าคลิกในพื้นที่นอกป๊อปอัพหรือปุ่ม "X"
+    if (event.target === popup || event.target === closeButton) {
+        popup.classList.remove('show');
     }
 }
 
@@ -114,26 +113,32 @@ function addClickEventToImages() {
     
     imageFrames.forEach(img => {
         img.addEventListener('click', function() {
-            openImagePopup(this.src);  // เปิดป๊อปอัพแสดงรูปเมื่อคลิกที่รูป
+            openImagePopup(this.src);
         });
     });
 }
 
-// ฟังก์ชันที่ฟังการกดปุ่ม ESC
+// ฟังก์ชันฟังการกดปุ่ม ESC
 function handleEscKey(event) {
-    if (event.key === 'Escape') {
-        const popup = document.getElementById('image-popup');
-        popup.classList.remove('show');  // ซ่อนป๊อปอัพเมื่อกด ESC
+    const popup = document.getElementById('image-popup');
+    if (event.key === 'Escape' && popup.classList.contains('show')) {
+        popup.classList.remove('show');
     }
 }
 
 // ฟังก์ชันฟังการคลิกพื้นที่นอกป๊อปอัพหรือปุ่มปิด
 window.onclick = function(event) {
-    closeGalleryPopup(event);  // ปิดป๊อปอัพเมื่อคลิกพื้นที่นอกป๊อปอัพหรือปุ่ม "X"
+    const popup = document.getElementById('image-popup');
+    const closeButton = document.getElementById('close-popup');
+    
+    // ตรวจสอบว่าคลิกในพื้นที่นอกป๊อปอัพหรือปุ่ม "X"
+    if (event.target === popup || event.target === closeButton) {
+        closeGalleryPopup(event);
+    }
 };
 
 // ฟังก์ชันฟังการกดปุ่ม ESC
-window.addEventListener('keydown', handleEscKey);  // ฟังการกดปุ่ม ESC
+window.addEventListener('keydown', handleEscKey);
 
 
 
@@ -188,21 +193,7 @@ function showPreviousImage() {
     document.getElementById('popup-image').src = images[currentImageIndex];
 }
 
-function closeImagePopup(event) {
-    const popup = document.getElementById('image-popup');
-    if (event.target === popup) {
-        popup.classList.remove('show');
-    }
-}
 
-function addClickEventToImages() {
-    const imageFrames = document.querySelectorAll('.image-frame img');
-    imageFrames.forEach(img => {
-        img.addEventListener('click', function () {
-            openImagePopup(this.src);
-        });
-    });
-}
 
 window.onload = function () {
     loadImages();
@@ -221,3 +212,8 @@ window.addEventListener('keydown', function (event) {
         else if (event.key === 'Escape') popup.classList.remove('show');
     }
 });
+
+
+
+
+

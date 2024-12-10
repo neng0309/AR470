@@ -30,142 +30,141 @@ function openFacebookChat() {
 }
 
 
+let currentImageIndex = 0;
+let currentAlbumImages = [];  // สำหรับเก็บภาพในอัลบั้มที่เปิด
 
 
-
-let currentImageIndex = 0; // ตัวแปรเก็บ index ของรูปภาพปัจจุบัน
-
-// ฟังก์ชันเพื่อแสดงรายละเอียดผลงานในรูปแบบ Pop-up
-function showGalleryDetails(workId) {
-    // แสดง Pop-up
-    const popup = document.getElementById('gallery-popup');
-    popup.style.display = 'flex';
-    
-    const popupContent = document.querySelector('.popup-gallery-grid');
-    popupContent.innerHTML = '';  // ลบรูปเดิมในกริด
-
-    // ตัวแปรที่เก็บชื่อไฟล์รูปภาพของแต่ละงาน
-    let images = [];
-    
-    // กำหนดชื่อไฟล์รูปภาพตาม workId
-    if (workId === '2024-1') {
-        images = [
+// ฟังก์ชันเปิดอัลบั้ม
+function openAlbum(album) {
+    const albumImages = {
+        '2024-1': [
             'Port-gallery/2024/1/work1.jpg',
             'Port-gallery/2024/1/work2.jpg',
             'Port-gallery/2024/1/work3.jpg',
             'Port-gallery/2024/1/work4.jpg',
             'Port-gallery/2024/1/work5.jpg',
             'Port-gallery/2024/1/work6.jpg',
-            'Port-gallery/2024/1/work7.jpg',
-            'Port-gallery/2024/1/work8.jpg'
-        ];
-    } else if (workId === '2024-2') {
-        images = [
+            'Port-gallery/2024/1/work7.jpg'
+        ],
+        '2024-2': [
             'Port-gallery/2024/2/work1.jpg',
             'Port-gallery/2024/2/work2.jpg',
             'Port-gallery/2024/2/work3.jpg',
             'Port-gallery/2024/2/work4.jpg',
             'Port-gallery/2024/2/work5.jpg',
             'Port-gallery/2024/2/work6.jpg',
-            'Port-gallery/2024/2/work7.jpg',
-            'Port-gallery/2024/2/work8.jpg'
-        ];
-    } else if (workId === '2024-3') {
-        images = [
+            'Port-gallery/2024/2/work7.jpg'
+        ],
+        '2024-3': [
             'Port-gallery/2024/3/work1.jpg',
             'Port-gallery/2024/3/work2.jpg',
             'Port-gallery/2024/3/work3.jpg',
             'Port-gallery/2024/3/work4.jpg',
             'Port-gallery/2024/3/work5.jpg',
             'Port-gallery/2024/3/work6.jpg',
-            'Port-gallery/2024/3/work7.jpg',
-            'Port-gallery/2024/3/work8.jpg'
-        ];
-    }
-    
-    // แสดงรูปแรก
-    const img = document.createElement('img');
-    img.src = images[currentImageIndex];
-    img.alt = `ผลงาน ${workId}-${currentImageIndex + 1}`;
-    img.classList.add('popup-image');
-    popupContent.appendChild(img);
+            'Port-gallery/2024/3/work7.jpg'
+        ]
+    };
 
-    // สร้างปุ่ม "ถัดไป" และ "ย้อนกลับ"
-    const navButtons = document.createElement('div');
-    navButtons.classList.add('popup-navigation');
-    
+    // โหลดภาพจากอัลบั้ม
+    currentAlbumImages = albumImages[album];
+    currentImageIndex = 0;  // เริ่มต้นที่ภาพแรก
+    showLightbox();
+}
+
+// ฟังก์ชันแสดง Lightbox และการนำทาง
+function showLightbox() {
+    const lightbox = document.createElement('div');
+    lightbox.classList.add('lightbox');
+    lightbox.onclick = () => lightbox.remove();
+
+    // แสดงภาพใน lightbox
+    const lightboxImage = document.createElement('img');
+    lightboxImage.src = currentAlbumImages[currentImageIndex];
+    lightbox.appendChild(lightboxImage);
+
+    // สร้างปุ่มนำทาง (Next, Prev)
+    const navigation = document.createElement('div');
+    navigation.classList.add('navigation');
+
     const prevButton = document.createElement('button');
-    prevButton.textContent = '<';
-    prevButton.onclick = () => changeImage('prev', images, popupContent);
+    prevButton.classList.add('prev');
+    prevButton.innerHTML = '&lt;';
+    prevButton.onclick = (e) => {
+        e.stopPropagation();
+        showPreviousImage();
+    };
 
     const nextButton = document.createElement('button');
-    nextButton.textContent = '>';
-    nextButton.onclick = () => changeImage('next', images, popupContent);
+    nextButton.classList.add('next');
+    nextButton.innerHTML = '&gt;';
+    nextButton.onclick = (e) => {
+        e.stopPropagation();
+        showNextImage();
+    };
 
-    navButtons.appendChild(prevButton);
-    navButtons.appendChild(nextButton);
+    navigation.appendChild(prevButton);
+    navigation.appendChild(nextButton);
+    lightbox.appendChild(navigation);
 
-    popupContent.appendChild(navButtons);
+    // แสดงข้อมูลการนับภาพ
+    const imageCounter = document.createElement('div');
+    imageCounter.classList.add('image-counter');
+    imageCounter.innerText = `รูปที่ ${currentImageIndex + 1} / ${currentAlbumImages.length}`;
+    lightbox.appendChild(imageCounter);
+
+    // ปุ่มปิด (X)
+    const closeButton = document.createElement('button');
+    closeButton.classList.add('close');
+    closeButton.innerText = '×';
+    closeButton.onclick = (e) => {
+        e.stopPropagation();
+        lightbox.remove(); // ปิด lightbox
+    };
+    lightbox.appendChild(closeButton);
+
+    document.body.appendChild(lightbox);
 }
 
-// ฟังก์ชันเปลี่ยนรูปเมื่อคลิกปุ่ม "ถัดไป" หรือ "ย้อนกลับ"
-function changeImage(direction, images, popupContent) {
-    if (direction === 'next') {
-        currentImageIndex = (currentImageIndex + 1) % images.length; // ไปที่รูปถัดไป
-    } else if (direction === 'prev') {
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // ย้อนกลับไปยังรูปก่อนหน้า
+function showNextImage() {
+    if (currentImageIndex < currentAlbumImages.length - 1) {
+        currentImageIndex++;
+    } else {
+        currentImageIndex = 0; // กลับไปที่ภาพแรก
     }
-
-    const img = document.createElement('img');
-    img.src = images[currentImageIndex];
-    img.alt = `ผลงาน ${currentImageIndex + 1}`;
-    img.classList.add('popup-image');
-
-    // ลบรูปเดิมและเพิ่มรูปใหม่
-    popupContent.innerHTML = '';
-    popupContent.appendChild(img);
-
-    // เพิ่มปุ่มนำทาง
-    const navButtons = document.createElement('div');
-    navButtons.classList.add('popup-navigation');
-    
-    const prevButton = document.createElement('button');
-    prevButton.textContent = '<';
-    prevButton.onclick = () => changeImage('prev', images, popupContent);
-
-    const nextButton = document.createElement('button');
-    nextButton.textContent = '>';
-    nextButton.onclick = () => changeImage('next', images, popupContent);
-
-    navButtons.appendChild(prevButton);
-    navButtons.appendChild(nextButton);
-
-    popupContent.appendChild(navButtons);
+    updateLightboxImage();
 }
 
-// ฟังก์ชันเพื่อปิด Pop-up
-function closeGalleryPopup() {
-    const popup = document.getElementById('gallery-popup');
-    popup.style.display = 'none';
+function showPreviousImage() {
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+    } else {
+        currentImageIndex = currentAlbumImages.length - 1; // กลับไปที่ภาพสุดท้าย
+    }
+    updateLightboxImage();
 }
 
-// เพิ่ม event listener ให้คลิกที่พื้นที่ว่างรอบๆ Pop-up เพื่อปิด Pop-up
-document.getElementById('gallery-popup').addEventListener('click', function(event) {
-    // ตรวจสอบว่าองค์ประกอบที่คลิกคือล่าสุดของ pop-up หรือไม่
-    if (event.target === event.currentTarget) {
-        closeGalleryPopup();
+function updateLightboxImage() {
+    const lightboxImage = document.querySelector('.lightbox img');
+    const imageCounter = document.querySelector('.image-counter');
+    if (lightboxImage) {
+        lightboxImage.src = currentAlbumImages[currentImageIndex];
+    }
+    if (imageCounter) {
+        imageCounter.innerText = `รูปที่ ${currentImageIndex + 1} / ${currentAlbumImages.length}`;
+    }
+}
+
+// การตรวจจับการกดคีย์
+window.addEventListener('keydown', function (event) {
+    const lightbox = document.querySelector('.lightbox');
+    if (lightbox) {
+        if (event.key === 'ArrowRight') {
+            showNextImage();
+        } else if (event.key === 'ArrowLeft') {
+            showPreviousImage();
+        } else if (event.key === 'Escape') {
+            lightbox.remove();
+        }
     }
 });
-
-// เพิ่ม event listener ให้ปิด Pop-up เมื่อกดปุ่ม ESC
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeGalleryPopup();
-    }
-});
-
-// ฟังก์ชันเพื่อปิด Pop-up
-function closeGalleryPopup() {
-    const popup = document.getElementById('gallery-popup');
-    popup.style.display = 'none'; // ซ่อนป๊อปอัพ
-}

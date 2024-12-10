@@ -54,6 +54,7 @@ body, html {
 .logo-image:hover {
     box-shadow: 0 0 5px 5px rgba(255, 215, 0, 0.1);
     transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
 
 /* เมนูนำทาง */
@@ -251,7 +252,7 @@ nav ul li a {
     align-items: center;
     background-color: #f1f1f1; /* สีพื้นหลังกรอบ */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* เงากรอบ */
-    z-index: 6000;
+    z-index: 1500;
 }
 
 /* ปรับขนาดภาพให้พอดีกับกรอบ */
@@ -395,7 +396,7 @@ nav ul li a {
     background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังทึบ */
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* ให้ป๊อปอัพอยู่ด้านบนสุด */
+    z-index: 500; /* ให้ป๊อปอัพอยู่ด้านบนสุด */
 }
 
 /* สไตล์สำหรับป๊อปอัพ */
@@ -409,20 +410,20 @@ nav ul li a {
     background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังทึบ */
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* ให้ป๊อปอัพอยู่ด้านบนสุด */
+    z-index: 500; /* ให้ป๊อปอัพอยู่ด้านบนสุด */
 }
 
 /* สไตล์ปุ่มปิด (X) ที่มุมขวาบน */
 .close-popup {
     position: absolute;
     top: 80px;
-    right: 10px;
+    right: 15px;
     background-color: transparent;
     border: none;
-    font-size: 18px;
+    font-size: 25px;
     color: white;
     cursor: pointer;
-    z-index: 25000;
+    z-index: 200;
 }
 
 .close-popup:hover {
@@ -430,3 +431,10 @@ nav ul li a {
     transform: scale(1.1);
     transition: color 0.3s ease, transform 0.3s ease;
 }
+
+
+
+
+
+
+
