@@ -18,6 +18,10 @@ body, html {
     width: 100%;
 }
 
+.close-popup:hover {
+    color: #f44336; /* สีเมื่อ hover */
+}
+
 /* ส่วนบน */
 .top-section {
     height: 70px;
