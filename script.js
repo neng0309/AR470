@@ -26,7 +26,7 @@ window.addEventListener('keydown', function(event) {
 
 // ฟังก์ชันเปิดแชท Facebook
 function openFacebookChat() {
-    window.open("https://m.me/yourfacebookpage", "_blank");  // เปิดหน้าต่างแชท Facebook
+    window.open("https://www.facebook.com/people/AR470-Drawing-Team/61570113311389/");  // เปิดหน้าต่างแชท Facebook
 }
 
 
