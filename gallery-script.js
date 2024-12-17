@@ -26,7 +26,7 @@ window.addEventListener('keydown', function(event) {
 
 // ฟังก์ชันเปิดแชท Facebook
 function openFacebookChat() {
-    window.open("https://m.me/yourfacebookpage", "_blank");  // เปิดหน้าต่างแชท Facebook
+    window.open("https://www.facebook.com/people/AR470-Drawing-Team/61570113311389/");  // เปิดหน้าต่างแชท Facebook
 }
 
 
@@ -44,7 +44,9 @@ function openAlbum(album) {
             'Port-gallery/2024/1/work4.jpg',
             'Port-gallery/2024/1/work5.jpg',
             'Port-gallery/2024/1/work6.jpg',
-            'Port-gallery/2024/1/work7.jpg'
+            'Port-gallery/2024/1/work7.jpg',
+            'Port-gallery/2024/1/work8.jpg',
+            'Port-gallery/2024/1/work9.jpg'
         ],
         '2024-2': [
             'Port-gallery/2024/2/work1.jpg',
