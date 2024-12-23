@@ -41,12 +41,7 @@ function openAlbum(album) {
             'Port-gallery/2024/1/work1.jpg',
             'Port-gallery/2024/1/work2.jpg',
             'Port-gallery/2024/1/work3.jpg',
-            'Port-gallery/2024/1/work4.jpg',
-            'Port-gallery/2024/1/work5.jpg',
-            'Port-gallery/2024/1/work6.jpg',
-            'Port-gallery/2024/1/work7.jpg',
-            'Port-gallery/2024/1/work8.jpg',
-            'Port-gallery/2024/1/work9.jpg'
+            'Port-gallery/2024/1/work4.jpg'
         ],
         '2024-2': [
             'Port-gallery/2024/2/work1.jpg',
@@ -65,6 +60,47 @@ function openAlbum(album) {
             'Port-gallery/2024/3/work5.jpg',
             'Port-gallery/2024/3/work6.jpg',
             'Port-gallery/2024/3/work7.jpg'
+        ],
+        '2024-4': [
+            'Port-gallery/2024/4/work1.jpg',
+            'Port-gallery/2024/4/work2.jpg',
+            'Port-gallery/2024/4/work3.jpg',
+            'Port-gallery/2024/4/work4.jpg',
+            'Port-gallery/2024/4/work5.jpg',
+            'Port-gallery/2024/4/work6.jpg',
+            'Port-gallery/2024/4/work7.jpg'
+        ],
+        '2024-5': [
+            'Port-gallery/2024/5/work1.jpg',
+            'Port-gallery/2024/5/work2.jpg',
+            'Port-gallery/2024/5/work3.jpg',
+            'Port-gallery/2024/5/work4.jpg',
+            'Port-gallery/2024/5/work5.jpg',
+            'Port-gallery/2024/5/work6.jpg',
+            'Port-gallery/2024/5/work7.jpg',
+            'Port-gallery/2024/5/work8.jpg',
+            'Port-gallery/2024/5/work9.jpg',
+            'Port-gallery/2024/5/work10.jpg',
+            'Port-gallery/2024/5/work11.jpg',
+            'Port-gallery/2024/5/work12.jpg',
+            'Port-gallery/2024/5/work13.jpg'
+        ],
+        '2024-6': [
+            'Port-gallery/2024/6/work1.jpg',
+            'Port-gallery/2024/6/work2.jpg',
+            'Port-gallery/2024/6/work3.jpg',
+            'Port-gallery/2024/6/work4.jpg',
+            'Port-gallery/2024/6/work5.jpg',
+            'Port-gallery/2024/6/work6.jpg',
+            'Port-gallery/2024/6/work7.jpg',
+            'Port-gallery/2024/6/work8.jpg',
+            'Port-gallery/2024/6/work9.jpg',
+            'Port-gallery/2024/6/work10.jpg',
+            'Port-gallery/2024/6/work11.jpg',
+            'Port-gallery/2024/6/work12.jpg',
+            'Port-gallery/2024/6/work13.jpg',
+            'Port-gallery/2024/6/work14.jpg',
+            'Port-gallery/2024/6/work15.jpg'
         ]
     };
 
